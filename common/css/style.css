@@ -1,18 +1,76 @@
 
-# p { font-size: 14px; }
+/* 全体のフォントサイズ */
+/* p { font-size: 14px; } */
 
+/* 見出し */
+.pageTitle {
+    font-size: 26px;
+    background-color: #F2F2E5;
+    padding: 5px 15px;
+}
+
+.heading-typeA {
+    font-size: 18px;
+    color: #349FA6;
+    border-bottom: solid 1px #349FA6;
+    padding: 5px;
+}
+
+.heading-typeB {
+    font-size: 16px;
+    border-left: solid 5px #E3E4D9;
+    padding-left: 10px;
+}
+
+.articleDetailHead {
+    border-bottom: solid 1px #CCCCCC;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+}
+
+.articleDetailFoot {
+    border-top: solid 1px #CCCCCC;
+    margin-top: 30px;
+    padding-top: 15px;
+}
+
+.articleDetailBody section {
+    margin: 30px 0;
+}
+
+ul li {
+    font-size: 14px;
+    list-style-type: square;
+}
+
+/* カレンダー表のフォントカラー */
+/* 日曜(赤) */
 .sunday {
     color: #FF0000;
 }
+/* 土曜(青) */
 .saturday {
     color: #0000FF;
 }
+/* 祝日(赤) */
 .holiday {
     color: #FF0000;
 }
 
+/* 表の設定 */
 table {
     font-size: 22px;
     border: lpx solid #CCCCCC;
     border-collapse: collapse;
-    }
+}
+
+table th,
+table td {
+    border: lpx solid #CCCCCC;
+    padding: 5px 10px;
+    text-align: center;
+}
+
+table th {
+    background-color: #EEEEEE;
+}

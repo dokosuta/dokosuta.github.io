@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>入力フォーム</title>
+    <link rel="stylesheet" href="../common/css/normalize.css">
+    <link rel="stylesheet" href="../common/css/style.css">
+</head>
+<body>
+
+<article class="articleDetail">
+    <header class="articleDetailHead">
+        <h1 class="pageTitle">会員登録画面</h1>
+        <p>会員情報を登録してください。</p>
+    </header>
+    
+    <section class="articleDetailBody">
+        <form method="post" action="membership_info.cgi">
+
+        <p>ユーザー名    ：<input type="text" name="username"></p>
+        <p>パスワード    ：<input type="password" name="password"></p>
+        <p>メールアドレス：<input type="text" name="email"></p>
+        
+        <p>性別：<br>
+        <input type="radio" name="radio1" value="男性"> 男性
+        <input type="radio" name="radio2" value="女性"> 女性
+        </p>
+        <br>
+        
+        <p>このサイトをどうやって知りましたか？<br>
+        <select name="知ったきっかけ">
+        <option value="select1"></option>
+        <option value="select2">テレビで</option>
+        <option value="select3">雑誌で</option>
+        <option value="select4">知人の紹介で</option>
+        </select>
+        </p>
+        
+        <p>このサイトでどのようなことを学びたいですか？<br>
+        あてはまるものすべてを選んでください。<br>
+        <select name="学びたいこと" size="3" multiple>
+        <option value="selectA">html</option>
+        <option value="selectB">css</option>
+        <option value="selectC">javascript</option>
+        <option value="selectD">web design</option>
+        <option value="selectE">その他</option>
+        </select>
+        </p>
+        <br>
+        
+        <p>添付ファイル<br>
+        <input type="file" name="file1" disabled>
+        </p>
+        
+        <p>隠しデータ<br>
+        <input type="hidden" name="hidden1" value="sample">（画面上には表示されません）</p>
+        <br>
+        
+        <p>利用規約：<br>
+        <textarea name="commit_info" cols="50" rows="10" readonly>
+        利用規約
+このサイトは私的利用でしか使用を認めません。
+        /* 省略 */
+一切の責任を負いません。
+        </textarea>
+        </p>
+        
+        <p><input type="checkbox" name="checkbox1" value="confirm"> 利用規約に同意します。</p>
+        
+        <p>
+        <input type="submit" value="登録">
+        <input type="reset" value="クリア">
+        </p>
+    </form>
+    
+    <br>
+    <button type="button" onclick="history.back()">戻る</button>
+    
+    </section>
+</article>
+
+</body>
+</html>

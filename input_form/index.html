@@ -5,6 +5,56 @@
     <title>入力フォーム</title>
     <link rel="stylesheet" href="../common/css/normalize.css">
     <link rel="stylesheet" href="../common/css/style.css">
+    <script type="text/javascript">
+    function disp_val(){
+        var user = memInfo_form.username.value;  //テキストエリアの値を取得
+
+        var passwd = memInfo_form.password.value;
+
+        var email = memInfo_form.email.value;
+
+        if(memInfo_form.sex[0].checked == true){
+            var sex = memInfo_form.sex[0].value;
+        }else{
+            var sex = memInfo_form.sex[1].value;
+        }
+        
+        var trigger = memInfo_form.trigger.value;
+
+        /* dropdownlist */
+        /* select要素を取得 */
+        var element = document.getElementById( "purpose" ) ;
+        
+        /* 全てのoption要素を取得 */
+        var elements = element.options ;
+        
+        /* 各要素の値を確認 */
+        var purpose = "" ;
+        
+        for ( var i=0,l=elements.length; l>i; i++ ) {
+            if ( elements[i].selected ) {
+                purpose += elements[i].value + " " ;
+            }
+        }
+        
+        var file1 = document.getElementById("file1").files[0];
+        
+        var hidden1 = memInfo_form.hidden1.value;
+        
+        var checkbox1 = memInfo_form.checkbox1.value;
+
+        alert("ユーザー名     : " + user + "\n"
+            + "パスワード     : " + passwd + "\n"
+            + "email          : " + email + "\n"
+            + "性別           : " + sex + "\n"
+            + "きっかけ       : " + trigger + "\n"
+            + "目的           : " + purpose + "\n"
+            + "添付ファイル   : " + file1.name + "\n"
+            + "隠しデータ     : " + hidden1 + "\n"
+            + "利用規約の同意 : " + checkbox1 + "\n"
+             );
+    }
+</script>
 </head>
 <body>
 
@@ -15,41 +65,57 @@
     </header>
     
     <section class="articleDetailBody">
+<!--
         <form method="post" action="membership_info.cgi">
+-->
+        <form name="memInfo_form" action="./index.html">
 
-        <p>ユーザー名    ：<input type="text" name="username" input pattern="^[0-9A-Za-z]+$" style="ime-mode:disabled;"></p>
-        <p>パスワード    ：<input type="password" name="password"></p>
-        <p>メールアドレス：<input type="email" name="email" input pattern="^[0-9A-Za-z]+$" style="ime-mode:disabled;"></p>
+        <p>ユーザー名    ：<input type="text" name="username" input pattern="^[0-9A-Za-z]+$" style="ime-mode:disabled;" onInput="checkForm(this)" required>※必須項目</p>
+        <p>パスワード    ：<input type="password" name="password" input pattern="^([a-zA-Z0-9]{6,})$" title="6文字以上の半角英数字を入力してください。" required>※必須項目</p>
+        <p>メールアドレス：<input type="email" name="email" style="ime-mode:disabled;" onInput="checkForm(this)" required>※必須項目</p>
         
-        <p>性別：<br>
-        <input type="radio" name="radio1" value="男性"> 男性
-        <input type="radio" name="radio1" value="女性"> 女性
+        <script type="text/javascript">
+            function checkForm($this)
+            {
+                var str=$this.value;
+                while(str.match(/[^A-Z^a-z\d\-@_\.]/))
+                {
+                    str=str.replace(/[^A-Z^a-z\d\-@_\.]/,"");
+                }
+                $this.value=str;
+            }
+        </script>
+
+        <p>性別：※必須項目<br>
+        <input type="radio" name="sex" value="男性" required> 男性
+        <input type="radio" name="sex" value="女性" required> 女性
         </p>
         <br>
         
-        <p>このサイトをどうやって知りましたか？<br>
-        <select name="知ったきっかけ">
-        <option value="select1"></option>
-        <option value="select2">テレビで</option>
-        <option value="select3">雑誌で</option>
-        <option value="select4">知人の紹介で</option>
+        <p>このサイトをどうやって知りましたか？※必須項目<br>
+        <select name="trigger" required>
+            <option value=""></option>
+            <option value="テレビ">テレビで</option>
+            <option value="雑誌">雑誌で</option>
+            <option value="知人の紹介">知人の紹介で</option>
         </select>
         </p>
         
-        <p>このサイトでどのようなことを学びたいですか？<br>
-        あてはまるものすべてを選んでください。<br>
-        <select name="学びたいこと" size="3" multiple>
-        <option value="selectA">html</option>
-        <option value="selectB">css</option>
-        <option value="selectC">javascript</option>
-        <option value="selectD">web design</option>
-        <option value="selectE">その他</option>
+        <p>このサイトでどのようなことを学びたいですか？※必須項目<br>
+        最もあてはまるものを選んでください。<br>
+        <select id="purpose" name="purpose" size="3" multiple required>
+            <option value="html">html</option>
+            <option value="css">css</option>
+            <option value="javascript">javascript</option>
+            <option value="web design">web design</option>
+            <option value="other">その他</option>
         </select>
         </p>
         <br>
         
         <p>添付ファイル<br>
-        <input type="file" name="file1" disabled>
+        アイコン画像※必須項目<br>
+        <input id="file1" type="file" name="file1" required>
         </p>
         
         <p>隠しデータ<br>
@@ -65,10 +131,11 @@
         </textarea>
         </p>
         
-        <p><input type="checkbox" name="checkbox1" value="confirm"> 利用規約に同意します。</p>
+        <p><input type="checkbox" name="checkbox1" value="OK" required> 利用規約に同意します。※必須項目</p>
         
         <p>
-        <input type="submit" value="登録">
+<!--        <input type="submit" value="登録"> -->
+        <input type="submit" value="登録" onclick="disp_val()">
         <input type="reset" value="クリア">
         </p>
     </form>
